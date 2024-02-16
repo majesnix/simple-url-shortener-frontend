@@ -20,7 +20,7 @@ const ResolveUrl = () => {
     }
   });
 
-  return <Show when={notFound}>NOT FOUND</Show>;
+  return <Show when={notFound()}>NOT FOUND</Show>;
 };
 
 export default ResolveUrl;
