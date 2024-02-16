@@ -35,6 +35,12 @@ const Short = styled("div", {
   },
 });
 
+const Header = styled("h1", {
+  base: {
+    color: "white",
+  },
+});
+
 const InputUrl = () => {
   const [url, setUrl] = createSignal("");
   const [short, setShort] = createSignal("");
@@ -56,6 +62,7 @@ const InputUrl = () => {
 
   return (
     <Wrapper>
+      <Header>{import.meta.env.VITE_BASE}</Header>
       <InputWrapper>
         <Input
           id="input"
