@@ -1,6 +1,9 @@
 # stage 1 - build react app
 FROM node:alpine as builder
 
+ARG VITE_BASE
+ARG VITE_API
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./

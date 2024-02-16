@@ -31,6 +31,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: Dockerfile
           push: true
+          build-args: |
+            VITE_API=${{ secrets.VITE_API }}
+            VITE_BASE=${{ secrets.VITE_BASE }}
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/sus-frontend:2.0.0
           cache-from: type=gha
