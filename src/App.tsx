@@ -9,6 +9,15 @@ const Wrapper = styled("div", {
   },
 });
 
+const Version = styled("div", {
+  base: {
+    color: "white",
+    position: "absolute",
+    bottom: "1.5rem",
+    left: "1.5rem",
+  },
+});
+
 interface Props extends JSX.ButtonHTMLAttributes<HTMLDivElement> {}
 
 const App: Component = (props: Props) => {
@@ -16,6 +25,7 @@ const App: Component = (props: Props) => {
     <Wrapper>
       {props.children}
       <Nav />
+      <Version>v2</Version>
     </Wrapper>
   );
 };

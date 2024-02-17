@@ -15,17 +15,10 @@ const Link = styled("a", {
   base: { textDecoration: "none", color: "#FBFBFB", cursor: "pointer" },
 });
 
-const Version = styled("div", {
-  base: {
-    color: "white",
-  },
-});
-
 const Nav = () => (
   <NavWrapper>
     <Link href="/">Home</Link>
     <Link href="/terms">Terms</Link>
-    <Version>v2</Version>
   </NavWrapper>
 );
 
