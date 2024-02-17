@@ -74,10 +74,11 @@ const InputUrl = () => {
     input.focus();
   });
 
-  createEffect(() => {
+  createEffect(async () => {
     const pressed = keys();
-    if (pressed?.key == 'Enter') {
-      shorten()
+    if (pressed?.key == "Enter") {
+      await shorten();
+      shortUrlClickHandler();
     }
   });
 
