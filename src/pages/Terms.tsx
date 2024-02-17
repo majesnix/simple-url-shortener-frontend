@@ -6,7 +6,7 @@ const Wrapper = styled("div", {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "1.0rem",
+    fontSize: "1.2rem",
     color: "white",
   },
 });
