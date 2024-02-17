@@ -2,6 +2,7 @@ import { styled } from "@macaron-css/solid";
 import "./InputUrl.scss";
 import { Show, createSignal, onMount } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
+import toast, { Toaster } from "solid-toast";
 
 const Wrapper = styled("div", {
   base: {
@@ -34,6 +35,9 @@ const Short = styled("div", {
   base: {
     color: "white",
     marginTop: "8px",
+    ":hover": {
+      cursor: "pointer",
+    },
   },
 });
 
@@ -62,6 +66,11 @@ const InputUrl = () => {
     input.focus();
   });
 
+  const shortUrlClickHandler = () => {
+    writeClipboard(short());
+    toast.success("Copied to clipboard!");
+  };
+
   return (
     <Wrapper>
       <Header>{import.meta.env.VITE_BASE}</Header>
@@ -72,8 +81,9 @@ const InputUrl = () => {
         </button>
       </InputWrapper>
       <Show when={short()}>
-        <Short onClick={() => writeClipboard(short())}>{short()}</Short>
+        <Short onClick={shortUrlClickHandler}>{short()}</Short>
       </Show>
+      <Toaster />
     </Wrapper>
   );
 };
