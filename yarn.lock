@@ -653,7 +653,7 @@
   dependencies:
     "@solid-primitives/utils" "^6.2.2"
 
-"@solid-primitives/keyboard@^1.2.5":
+"@solid-primitives/keyboard@^1.2.5", "@solid-primitives/keyboard@^1.2.6":
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/@solid-primitives/keyboard/-/keyboard-1.2.6.tgz#b23692239253478c406d6a7c61d0ff84a52a73d7"
   integrity sha512-ZbXkzAwFs+6hyaZ2hT9uQ38iPZzGTjV6kWvVvJ3BDfKASg0dDDuhEZRKmpkmpLfnqOabV58BUkASJWMAA4dZCg==

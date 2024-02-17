@@ -1,8 +1,9 @@
 import { styled } from "@macaron-css/solid";
 import "./InputUrl.scss";
-import { Show, createSignal, onMount } from "solid-js";
+import { Show, createEffect, createSignal, onMount } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
 import toast, { Toaster } from "solid-toast";
+import { useKeyDownEvent } from "@solid-primitives/keyboard";
 
 const Wrapper = styled("div", {
   base: {
@@ -48,6 +49,8 @@ const Header = styled("h1", {
 });
 
 const InputUrl = () => {
+  const keys = useKeyDownEvent();
+
   const [url, setUrl] = createSignal("");
   const [short, setShort] = createSignal("");
 
@@ -60,16 +63,23 @@ const InputUrl = () => {
     setShort("https://" + import.meta.env.VITE_BASE + "/" + short);
   };
 
+  const shortUrlClickHandler = () => {
+    writeClipboard(short());
+    toast.success("Copied to clipboard!");
+  };
+
   onMount(() => {
     const input = document.getElementById("input")! as HTMLInputElement;
     input.value = "https://";
     input.focus();
   });
 
-  const shortUrlClickHandler = () => {
-    writeClipboard(short());
-    toast.success("Copied to clipboard!");
-  };
+  createEffect(() => {
+    const pressed = keys();
+    if (pressed?.key == 'Enter') {
+      shorten()
+    }
+  });
 
   return (
     <Wrapper>
