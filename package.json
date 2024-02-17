@@ -1,5 +1,5 @@
 {
-  "name": "vite-template-solid",
+  "name": "simple-url-shortener",
   "version": "0.0.0",
   "description": "",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@macaron-css/vite": "^1.4.3",
+    "sass": "^1.71.0",
     "solid-devtools": "^0.29.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.11",

@@ -1,5 +1,5 @@
 import { styled } from "@macaron-css/solid";
-import "./InputUrl.css";
+import "./InputUrl.scss";
 import { Show, createSignal, onMount } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
 
@@ -25,6 +25,8 @@ const Input = styled("input", {
   base: {
     fontSize: "1.8rem",
     width: "25rem",
+    marginRight: "1rem",
+    height: "2.5rem",
   },
 });
 
@@ -64,12 +66,8 @@ const InputUrl = () => {
     <Wrapper>
       <Header>{import.meta.env.VITE_BASE}</Header>
       <InputWrapper>
-        <Input
-          id="input"
-          placeholder="https://.."
-          onInput={(e) => setUrl(e.target.value)}
-        ></Input>
-        <button class="shorten-button" onClick={shorten}>
+        <Input id="input" onInput={(e) => setUrl(e.target.value)}></Input>
+        <button class="btn draw-border" onClick={shorten}>
           Shorten
         </button>
       </InputWrapper>
