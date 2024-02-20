@@ -4,16 +4,7 @@ import { Show, createEffect, createSignal, onMount } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
 import toast, { Toaster } from "solid-toast";
 import { useKeyDownEvent } from "@solid-primitives/keyboard";
-
-const Wrapper = styled("div", {
-  base: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+import { Wrapper } from "../components/Wrapper";
 
 const InputWrapper = styled("div", {
   base: {
