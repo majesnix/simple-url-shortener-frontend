@@ -1,6 +1,6 @@
 import { Show, createSignal, onMount } from "solid-js";
 import notFoundImage from "../assets/404.jpg";
-import { Wrapper } from "../components/Wrapper";
+import Wrapper from "../components/Wrapper";
 
 const ResolveUrl = () => {
   const [notFound, setNotFound] = createSignal(false);

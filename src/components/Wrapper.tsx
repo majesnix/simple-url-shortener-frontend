@@ -1,6 +1,6 @@
 import { styled } from "@macaron-css/solid";
 
-export const Wrapper = styled("div", {
+const Wrapper = styled("div", {
     base: {
       height: "100%",
       display: "flex",
@@ -9,3 +9,5 @@ export const Wrapper = styled("div", {
       alignItems: "center",
     },
   });
+
+  export default Wrapper;
