@@ -738,10 +738,10 @@
   resolved "https://registry.yarnpkg.com/@solidjs/meta/-/meta-0.29.3.tgz#374516ecbac71cc1bac628f796ebeef46b9e3579"
   integrity sha512-R2uirgjgyh3FPFh+rb840plF701N6GvM5w81/QeI61QwjXb4QzLkyI/uzXfC5UW8favpUn9KK9ILQeoTl6pX0A==
 
-"@solidjs/router@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.12.0.tgz#6fff6f32ea5ad442ded0c4ea0831521cf252f3ff"
-  integrity sha512-9dyBL35T7x86RBSJBMu9jLGytBTmWQehb0uxez7TfzYtwI+v9poo2fzRbcCCrWVTQkwGD/rWvqmxUvczp2at3A==
+"@solidjs/router@^0.12.4":
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.12.4.tgz#33383bef4f021bf48b3658ec8f67c1e6bc8cae73"
+  integrity sha512-2S5QWYmpWSIWn5ei85eoStEMmECERX2BiBkEvmqYDrgX79I8D95YaWVdHbcFGOxISPTY4TP7RxjRiofs/AIFJQ==
 
 "@types/babel__core@^7.1.19", "@types/babel__core@^7.20.4":
   version "7.20.5"
@@ -1495,10 +1495,10 @@ rollup@^4.2.0:
     "@rollup/rollup-win32-x64-msvc" "4.10.0"
     fsevents "~2.3.2"
 
-sass@^1.71.0:
-  version "1.71.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.71.0.tgz#b3085759b9b2ab503a977aecb7e91153bf941117"
-  integrity sha512-HKKIKf49Vkxlrav3F/w6qRuPcmImGVbIXJ2I3Kg0VMA+3Bav+8yE9G5XmP5lMj6nl4OlqbPftGAscNaNu28b8w==
+sass@^1.71.1:
+  version "1.71.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.71.1.tgz#dfb09c63ce63f89353777bbd4a88c0a38386ee54"
+  integrity sha512-wovtnV2PxzteLlfNzbgm1tFXPLoZILYAMJtvoXXkD7/+1uP41eKkIt1ypWq5/q2uT94qHjXehEYfmjKOvjL9sg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -1519,7 +1519,7 @@ seroval@^1.0.3:
   resolved "https://registry.yarnpkg.com/seroval/-/seroval-1.0.4.tgz#0400d24a48b1f6f44b8a3d55af0476a1c5e8643f"
   integrity sha512-qQs/N+KfJu83rmszFQaTxcoJoPn6KNUruX4KmnmyD0oZkUoiNvJ1rpdYKDf4YHM05k+HOgCxa3yvf15QbVijGg==
 
-solid-devtools@^0.29.2:
+solid-devtools@^0.29.3:
   version "0.29.3"
   resolved "https://registry.yarnpkg.com/solid-devtools/-/solid-devtools-0.29.3.tgz#62c563ab5c340d02168b63017c204f5632aad537"
   integrity sha512-9j3VxVbEoC54ML22gAMytR8ZS1nk9xKatsWziKSkI4c/Bcyh4sxQBGESHuXSLs9xaxpyGVTmFl3hknoxEpKzlA==
@@ -1530,10 +1530,10 @@ solid-devtools@^0.29.2:
     "@solid-devtools/debugger" "^0.23.3"
     "@solid-devtools/shared" "^0.13.1"
 
-solid-js@^1.8.11:
-  version "1.8.14"
-  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.8.14.tgz#979aa8000eedede07e7f5a5773a4714ab3eeb113"
-  integrity sha512-kDfgHBm+ROVLDVuqaXh/jYz0ZVJ29TYfVsKsgDPtNcjoyaPtOvDX2l0tVnthjLdEXr7vDTYeqEYFfMkZakDsOQ==
+solid-js@^1.8.15:
+  version "1.8.15"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.8.15.tgz#af4eef7203203efefb605613f3c244b5bcdb63bc"
+  integrity sha512-d0QP/efr3UVcwGgWVPveQQ0IHOH6iU7yUhc2piy8arNG8wxKmvUy1kFxyF8owpmfCWGB87usDKMaVnsNYZm+Vw==
   dependencies:
     csstype "^3.1.0"
     seroval "^1.0.3"
@@ -1623,10 +1623,10 @@ vite-node@^1.2.0:
     picocolors "^1.0.0"
     vite "^5.0.0"
 
-vite-plugin-solid@^2.8.2:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/vite-plugin-solid/-/vite-plugin-solid-2.9.1.tgz#916cd0894afb48d1e0917bae9a52113d8778837d"
-  integrity sha512-RC4hj+lbvljw57BbMGDApvEOPEh14lwrr/GeXRLNQLcR1qnOdzOwwTSFy13Gj/6FNIZpBEl0bWPU+VYFawrqUw==
+vite-plugin-solid@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-solid/-/vite-plugin-solid-2.10.1.tgz#f09a353c6b9414c62b258422ddeb73f9d320dd92"
+  integrity sha512-kfVdNLWaJqaJVL52U6iCCKNW/nXE7bS1VVGOWPGllOkJfcNILymVSY0LCBLSnyy0iYnRtrXpiHm14rMuzeC7CA==
   dependencies:
     "@babel/core" "^7.23.3"
     "@types/babel__core" "^7.20.4"
@@ -1639,6 +1639,17 @@ vite@^5.0.0, vite@^5.0.11:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.1.tgz#294e39b199d669981efc7e0261b14f78ec80819e"
   integrity sha512-wclpAgY3F1tR7t9LL5CcHC41YPkQIpKUGeIuT8MdNwNZr6OqOTLs7JX5vIHAtzqLWXts0T+GDrh9pN2arneKqg==
+  dependencies:
+    esbuild "^0.19.3"
+    postcss "^8.4.35"
+    rollup "^4.2.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+vite@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.4.tgz#14e9d3e7a6e488f36284ef13cebe149f060bcfb6"
+  integrity sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==
   dependencies:
     esbuild "^0.19.3"
     postcss "^8.4.35"
