@@ -46,12 +46,26 @@ const InputUrl = () => {
   const [short, setShort] = createSignal("");
 
   const shorten = async () => {
-    const { short } = (await fetch(import.meta.env.VITE_API, {
-      method: "POST",
-      body: JSON.stringify({ url: url() }),
-    }).then(async (response) => await response.json())) as { short: string };
+    try {
+      const { short } = await fetch(import.meta.env.VITE_API, {
+        method: "POST",
+        body: JSON.stringify({ url: url() }),
+      }).then(async (response) => {
+        if (response.ok) {
+          return (await response.json()) as { short: string };
+        } else {
+          if (response.status === 400) {
+            toast.error("Invalid URL");
+            throw new Error("Invalid URL");
+          } else {
+            toast.error("Something went wrong");
+            throw new Error("Something went wrong");
+          }
+        }
+      });
 
-    setShort("https://" + import.meta.env.VITE_BASE + "/" + short);
+      setShort("https://" + import.meta.env.VITE_BASE + "/" + short);
+    } catch (error) {}
   };
 
   const shortUrlClickHandler = () => {
