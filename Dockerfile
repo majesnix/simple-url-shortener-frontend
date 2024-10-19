@@ -1,5 +1,5 @@
 # stage 1 - build react app
-FROM node:alpine as builder
+FROM node:alpine AS builder
 
 ARG VITE_BASE
 ARG VITE_API
