@@ -1487,10 +1487,10 @@
   resolved "https://registry.npmjs.org/@solidjs/meta/-/meta-0.29.4.tgz"
   integrity sha512-zdIWBGpR9zGx1p1bzIPqF5Gs+Ks/BH8R6fWhmUa/dcK1L2rUC8BAcZJzNRYBQv74kScf1TSOs0EY//Vd/I0V8g==
 
-"@solidjs/router@^0.14.10":
-  version "0.14.10"
-  resolved "https://registry.npmjs.org/@solidjs/router/-/router-0.14.10.tgz"
-  integrity sha512-5B8LVgvvXijfXyXWPVLUm7RQ05BhjIpAyRkYVDZtrR3OaSvftXobWc6qSEwk4ICLoGi/IE9CUp2LUdCBIs9AXg==
+"@solidjs/router@^0.16.1":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.16.1.tgz#18f896f17b761f91f27f3dbe5f1d47aa0b81a72a"
+  integrity sha512-IhyjedgC6LRpw/8CPGGI89FrV+r0xTHzOl2c4CRyzYQ1bLepJxbVI1LLKvsavMWY5TRBRacV7hAeOhuTXkjiqg==
 
 "@solidjs/testing-library@^0.8.10":
   version "0.8.10"
