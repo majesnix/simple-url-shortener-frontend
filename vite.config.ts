@@ -1,16 +1,10 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import solidPlugin from 'vite-plugin-solid';
 import { macaronVitePlugin } from '@macaron-css/vite';
-// import devtools from 'solid-devtools/vite';
 
 export default defineConfig({
   plugins: [
     macaronVitePlugin(),
-    /* 
-    Uncomment the following line to enable solid-devtools.
-    For more info see https://github.com/thetarnav/solid-devtools/tree/main/packages/extension#readme
-    */
-    // devtools(),
     solidPlugin(),
   ],
   server: {
@@ -18,5 +12,16 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+  },
+  resolve: {
+    conditions: ['development', 'browser'],
+  },
+  ssr: {
+    noExternal: [/solid-js/, /@solidjs\//, /@solid-primitives\//, /solid-toast/, /@macaron-css\/solid/, /^msw/, /@mswjs\//],
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.ts'],
   },
 });

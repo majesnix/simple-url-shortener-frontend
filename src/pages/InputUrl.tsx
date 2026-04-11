@@ -55,10 +55,10 @@ const InputUrl = () => {
       } else {
         if (response.status === 400) {
           toast.error("Invalid URL");
-          throw new Error("Invalid URL");
+          return { short: "" };
         } else {
           toast.error("Something went wrong");
-          throw new Error("Something went wrong");
+          return { short: "" };
         }
       }
     });
