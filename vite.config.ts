@@ -16,9 +16,6 @@ export default defineConfig({
   resolve: {
     conditions: ['development', 'browser'],
   },
-  ssr: {
-    noExternal: [/solid-js/, /@solidjs\//, /@solid-primitives\//, /solid-toast/, /@macaron-css\/solid/, /^msw/, /@mswjs\//],
-  },
   test: {
     environment: 'jsdom',
     globals: true,

@@ -30,14 +30,16 @@
   }
 
   &::before {
-    $h-side: if($horizontal == "left", "right", "left");
+    $h-side: "right";
+    @if $horizontal == "left" { $h-side: "right"; } @else { $h-side: "left"; }
 
     border-#{$vertical}-width: $width;
     border-#{$h-side}-width: $width;
   }
 
   &::after {
-    $v-side: if($vertical == "top", "bottom", "top");
+    $v-side: "bottom";
+    @if $vertical == "top" { $v-side: "bottom"; } @else { $v-side: "top"; }
 
     border-#{$v-side}-width: $width;
     border-#{$horizontal}-width: $width;
