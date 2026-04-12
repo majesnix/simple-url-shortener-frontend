@@ -1114,12 +1114,12 @@
   dependencies:
     "@solid-primitives/utils" "^6.2.2"
 
-"@solid-primitives/event-listener@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/event-listener/-/event-listener-2.3.3.tgz#ab28c8627aa7d6234617867d8b02c80e1b8f0948"
-  integrity sha512-DAJbl+F0wrFW2xmcV8dKMBhk9QLVLuBSW+TR4JmIfTaObxd13PuL7nqaXnaYKDWOYa6otB00qcCUIGbuIhSUgQ==
+"@solid-primitives/event-listener@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/event-listener/-/event-listener-2.4.5.tgz#6112b6ee3bfbe5ea2c78a7331519f7b8b2e837e7"
+  integrity sha512-nwRV558mIabl4yVAhZKY8cb6G+O1F0M6Z75ttTu5hk+SxdOnKSGj+eetDIu7Oax1P138ZdUU01qnBPR8rnxaEA==
   dependencies:
-    "@solid-primitives/utils" "^6.2.3"
+    "@solid-primitives/utils" "^6.4.0"
 
 "@solid-primitives/keyboard@^1.2.5":
   version "1.2.6"
@@ -1131,13 +1131,13 @@
     "@solid-primitives/utils" "^6.2.2"
 
 "@solid-primitives/keyboard@^1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/keyboard/-/keyboard-1.2.8.tgz#99a695deede1724e03ce415ebdf5969c174fa398"
-  integrity sha512-pJtcbkjozS6L1xvTht9rPpyPpX55nAkfBzbFWdf3y0Suwh6qClTibvvObzKOf7uzQ+8aZRDH4LsoGmbTKXtJjQ==
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/keyboard/-/keyboard-1.3.5.tgz#73bdd98f249b5f05637868f545c7c0ac7dabed36"
+  integrity sha512-sav+l+PL+74z3yaftVs7qd8c2SXkqzuxPOVibUe5wYMt+U5Hxp3V3XCPgBPN2I6cANjvoFtz0NiU8uHVLdi9FQ==
   dependencies:
-    "@solid-primitives/event-listener" "^2.3.3"
-    "@solid-primitives/rootless" "^1.4.5"
-    "@solid-primitives/utils" "^6.2.3"
+    "@solid-primitives/event-listener" "^2.4.5"
+    "@solid-primitives/rootless" "^1.5.3"
+    "@solid-primitives/utils" "^6.4.0"
 
 "@solid-primitives/media@^2.2.5":
   version "2.2.6"
@@ -1178,12 +1178,12 @@
   dependencies:
     "@solid-primitives/utils" "^6.2.2"
 
-"@solid-primitives/rootless@^1.4.5":
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/rootless/-/rootless-1.4.5.tgz#120244fd5e02d9ea111ed2236fedcef572010be4"
-  integrity sha512-GFJE9GC3ojx0aUKqAUZmQPyU8fOVMtnVNrkdk2yS4kd17WqVSpXpoTmo9CnOwA+PG7FTzdIkogvfLQSLs4lrww==
+"@solid-primitives/rootless@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/rootless/-/rootless-1.5.3.tgz#daa75178ceeab7d4e619791de91a72c636beb3e4"
+  integrity sha512-N8cIDAHbWcLahNRLr0knAAQvXyEdEMoAZvIMZKmhNb1mlx9e2UOv9BRD5YNwQUJwbNoYVhhLwFOEOcVXFx0HqA==
   dependencies:
-    "@solid-primitives/utils" "^6.2.3"
+    "@solid-primitives/utils" "^6.4.0"
 
 "@solid-primitives/scheduled@^1.4.1":
   version "1.4.2"
@@ -1221,6 +1221,11 @@
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-6.2.3.tgz#1abed4c74a2696e08bd2e49cf2b86fc8b87a32bd"
   integrity sha512-CqAwKb2T5Vi72+rhebSsqNZ9o67buYRdEJrIFzRXz3U59QqezuuxPsyzTSVCacwS5Pf109VRsgCJQoxKRoECZQ==
+
+"@solid-primitives/utils@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-6.4.0.tgz#45257521d258cffd563b40d62163058af75496ae"
+  integrity sha512-AeGTBg8Wtkh/0s+evyLtP8piQoS4wyqqQaAFs2HJcFMMjYAtUgo+ZPduRXLjPlqKVc2ejeR544oeqpbn8Egn8A==
 
 "@solidjs/meta@^0.29.4":
   version "0.29.4"
