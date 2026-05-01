@@ -1,32 +1,15 @@
 import type { Component, JSX } from "solid-js";
-
 import Nav from "./components/Nav";
-import { styled } from "@macaron-css/solid";
-
-const Wrapper = styled("div", {
-  base: {
-    height: "100%",
-  },
-});
-
-const Version = styled("div", {
-  base: {
-    color: "white",
-    position: "absolute",
-    bottom: "1.5rem",
-    left: "1.5rem",
-  },
-});
 
 interface Props extends JSX.ButtonHTMLAttributes<HTMLDivElement> {}
 
 const App: Component = (props: Props) => {
   return (
-    <Wrapper>
+    <div class="relative min-h-full">
       {props.children}
       <Nav />
-      <Version>v2</Version>
-    </Wrapper>
+      <span class="absolute bottom-6 left-6 text-text-3 text-xs font-mono">v2</span>
+    </div>
   );
 };
 

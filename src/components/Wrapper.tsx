@@ -1,13 +1,9 @@
-import { styled } from "@macaron-css/solid";
+import type { ParentComponent } from "solid-js";
 
-const Wrapper = styled("div", {
-    base: {
-      height: "100%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  });
+const Wrapper: ParentComponent = (props) => (
+  <div class="min-h-screen flex flex-col justify-center items-center">
+    {props.children}
+  </div>
+);
 
-  export default Wrapper;
+export default Wrapper;
