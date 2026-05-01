@@ -5,9 +5,8 @@ import Wrapper from "../components/Wrapper";
 const ResolveUrl = () => {
   const [notFound, setNotFound] = createSignal(false);
   onMount(async () => {
-    const url = await fetch(
-      `${import.meta.env.VITE_API}/${location.pathname.replace("/", "")}`
-    )
+    const slug = location.pathname.split("/").filter(Boolean)[0] ?? "";
+    const url = await fetch(`${import.meta.env.VITE_API}/${slug}`)
       .then(async (response) => {
         if (response.ok) {
           return (await response.json()).url;
@@ -19,10 +18,15 @@ const ResolveUrl = () => {
       });
 
     if (url) {
-      if (!url.includes("http") || !url.includes("https")) {
-        window.location.href = "https://" + url;
-      } else {
-        window.location.href = url;
+      try {
+        const parsed = new URL(url);
+        if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+          window.location.href = url;
+        } else {
+          setNotFound(true);
+        }
+      } catch {
+        setNotFound(true);
       }
     } else {
       setNotFound(true);
