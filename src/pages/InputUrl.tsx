@@ -10,6 +10,7 @@ const EXPIRY_OPTIONS = [
   { value: "1w", label: "1 week" },
   { value: "1m", label: "1 month" },
   { value: "1y", label: "1 year" },
+  { value: "1x", label: "One time" },
 ] as const;
 
 const InputUrl = () => {
