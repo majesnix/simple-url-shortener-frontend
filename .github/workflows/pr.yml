@@ -1,6 +1,7 @@
 name: Test
 on:
   pull_request:
+  workflow_call:
 
 jobs:
   test:
@@ -13,11 +14,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version-file: '.tool-versions'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Typecheck
+        run: yarn typecheck
+
       - name: Run unit tests
         run: yarn test:run
+
+      - name: Build
+        run: yarn build

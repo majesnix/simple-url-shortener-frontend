@@ -6,7 +6,7 @@ const ResolveUrl = () => {
   const [notFound, setNotFound] = createSignal(false);
   onMount(async () => {
     const slug = location.pathname.split("/").filter(Boolean)[0] ?? "";
-    const url = await fetch(`${import.meta.env.VITE_API}/${slug}`)
+    const url = await fetch(`${import.meta.env.VITE_API}/${encodeURIComponent(slug)}`)
       .then(async (response) => {
         if (response.ok) {
           return (await response.json()).url;
@@ -21,7 +21,8 @@ const ResolveUrl = () => {
       try {
         const parsed = new URL(url);
         if (parsed.protocol === "http:" || parsed.protocol === "https:") {
-          window.location.href = url;
+          // replace() keeps the short link out of history, so Back doesn't redirect again.
+          location.replace(url);
         } else {
           setNotFound(true);
         }
@@ -36,7 +37,7 @@ const ResolveUrl = () => {
   return (
     <Wrapper>
       <Show when={notFound()}>
-        <img src={notFoundImage} />
+        <img src={notFoundImage} alt="Link not found" />
       </Show>
     </Wrapper>
   );

@@ -6,12 +6,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  test:
+    uses: ./.github/workflows/pr.yml
+
   build:
     name: Docker build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Read version
+        id: version
+        run: echo "version=$(jq -r .version package.json)" >> "$GITHUB_OUTPUT"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -25,6 +33,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      # Every image gets an immutable sha-<commit> tag for rollbacks, plus the
+      # package.json version and latest.
       - name: Build service
         uses: docker/build-push-action@v7
         with:
@@ -33,9 +43,12 @@ jobs:
           file: Dockerfile
           push: true
           build-args: |
-            VITE_API=${{ secrets.VITE_API }}
-            VITE_BASE=${{ secrets.VITE_BASE }}
+            VERSION=${{ steps.version.outputs.version }}
+            VITE_API=${{ vars.VITE_API || secrets.VITE_API }}
+            VITE_BASE=${{ vars.VITE_BASE || secrets.VITE_BASE }}
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/sus-frontend:2.0.0
+            ${{ secrets.DOCKER_USERNAME }}/sus-frontend:${{ steps.version.outputs.version }}
+            ${{ secrets.DOCKER_USERNAME }}/sus-frontend:sha-${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/sus-frontend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
