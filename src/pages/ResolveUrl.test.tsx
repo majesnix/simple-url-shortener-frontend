@@ -11,13 +11,13 @@ afterEach(() => {
 
 describe('ResolveUrl', () => {
   it('redirects to the original URL when the short code resolves', async () => {
-    const mockLocation = { pathname: '/abc123', href: '' };
+    const mockLocation = { pathname: '/abc123', replace: vi.fn() };
     vi.stubGlobal('location', mockLocation);
 
     render(() => <ResolveUrl />);
 
     await waitFor(() => {
-      expect(mockLocation.href).toBe('https://example.com');
+      expect(mockLocation.replace).toHaveBeenCalledWith('https://example.com');
     });
   });
 
@@ -26,7 +26,7 @@ describe('ResolveUrl', () => {
       http.get('http://test-api.com/:shortCode', () => new HttpResponse(null, { status: 404 }))
     );
 
-    const mockLocation = { pathname: '/notfound', href: '' };
+    const mockLocation = { pathname: '/notfound', replace: vi.fn() };
     vi.stubGlobal('location', mockLocation);
 
     render(() => <ResolveUrl />);
@@ -41,7 +41,7 @@ describe('ResolveUrl', () => {
       http.get('http://test-api.com/:shortCode', () => HttpResponse.error())
     );
 
-    const mockLocation = { pathname: '/broken', href: '' };
+    const mockLocation = { pathname: '/broken', replace: vi.fn() };
     vi.stubGlobal('location', mockLocation);
 
     render(() => <ResolveUrl />);
@@ -51,20 +51,21 @@ describe('ResolveUrl', () => {
     });
   });
 
-  it('prepends https:// when the resolved URL has no protocol', async () => {
+  it('does not redirect to a URL without an http(s) protocol', async () => {
     server.use(
       http.get('http://test-api.com/:shortCode', () =>
-        HttpResponse.json({ url: 'example.com' })
+        HttpResponse.json({ url: 'javascript:alert(1)' })
       )
     );
 
-    const mockLocation = { pathname: '/abc123', href: '' };
+    const mockLocation = { pathname: '/abc123', replace: vi.fn() };
     vi.stubGlobal('location', mockLocation);
 
     render(() => <ResolveUrl />);
 
     await waitFor(() => {
-      expect(mockLocation.href).toBe('https://example.com');
+      expect(screen.getByRole('img')).toBeInTheDocument();
     });
+    expect(mockLocation.replace).not.toHaveBeenCalled();
   });
 });

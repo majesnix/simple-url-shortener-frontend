@@ -1,9 +1,7 @@
-import type { Component, JSX } from "solid-js";
+import type { ParentComponent } from "solid-js";
 import Nav from "./components/Nav";
 
-interface Props extends JSX.ButtonHTMLAttributes<HTMLDivElement> {}
-
-const App: Component = (props: Props) => {
+const App: ParentComponent = (props) => {
   return (
     <div class="relative min-h-full">
       {props.children}

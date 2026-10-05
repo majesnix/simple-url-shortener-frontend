@@ -1,7 +1,6 @@
-import { Show, createEffect, createSignal, onMount } from "solid-js";
+import { Show, createSignal, onMount } from "solid-js";
 import { writeClipboard } from "@solid-primitives/clipboard";
 import toast, { Toaster } from "solid-toast";
-import { useKeyDownEvent } from "@solid-primitives/keyboard";
 import Wrapper from "../components/Wrapper";
 
 const EXPIRY_OPTIONS = [
@@ -14,58 +13,63 @@ const EXPIRY_OPTIONS = [
 ] as const;
 
 const InputUrl = () => {
-  const keys = useKeyDownEvent();
+  let input: HTMLInputElement | undefined;
 
-  const [url, setUrl] = createSignal("");
+  const [url, setUrl] = createSignal("https://");
   const [short, setShort] = createSignal("");
   const [expiry, setExpiry] = createSignal<string>("unlimited");
+  const [pending, setPending] = createSignal(false);
 
-  const shorten = async () => {
+  const shorten = async (): Promise<string | null> => {
     const expiryValue = expiry();
     const body: Record<string, string> = { url: url() };
     if (expiryValue !== "unlimited") body.expiry = expiryValue;
 
-    const result = await fetch(import.meta.env.VITE_API, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    }).then(async (response) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
       if (response.ok) {
-        return (await response.json()) as { short: string };
-      } else {
-        if (response.status === 400) {
-          toast.error("Invalid URL");
-          console.error("Invalid URL");
-        } else {
-          toast.error("Something went wrong");
-          console.error("Something went wrong");
-        }
-        return null;
+        const result = (await response.json()) as { short: string };
+        return "https://" + import.meta.env.VITE_BASE + "/" + result.short;
       }
-    });
-
-    if (!result) return;
-    setShort("https://" + import.meta.env.VITE_BASE + "/" + result.short);
+      if (response.status === 400) {
+        toast.error("Invalid URL");
+      } else if (response.status === 429) {
+        toast.error("Too many requests, please try again later");
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Could not reach the server");
+    }
+    return null;
   };
 
-  const shortUrlClickHandler = () => {
-    writeClipboard(short());
+  const copy = (value: string) => {
+    writeClipboard(value);
     toast.success("Copied to clipboard!");
   };
 
-  onMount(() => {
-    const input = document.getElementById("input")! as HTMLInputElement;
-    input.value = "https://";
-    input.focus();
-  });
-
-  createEffect(async () => {
-    const pressed = keys();
-    if (pressed?.key == "Enter") {
-      await shorten();
-      shortUrlClickHandler();
+  const onSubmit = async (e: SubmitEvent) => {
+    e.preventDefault();
+    if (pending()) return;
+    setPending(true);
+    try {
+      const result = await shorten();
+      if (result) {
+        setShort(result);
+        copy(result);
+      }
+    } finally {
+      setPending(false);
     }
-  });
+  };
+
+  onMount(() => input?.focus());
 
   return (
     <Wrapper>
@@ -73,16 +77,22 @@ const InputUrl = () => {
         {import.meta.env.VITE_BASE}
       </h1>
       <p class="text-text-3 text-sm mb-8 mt-1 tracking-wide">makes links short.</p>
-      <div class="flex items-center gap-3">
+      <form class="flex items-center gap-3" onSubmit={onSubmit}>
         <input
+          ref={input}
           id="input"
+          type="text"
+          inputmode="url"
+          aria-label="URL to shorten"
           class="h-10 w-80 bg-surface-2 border border-white/8 rounded-md px-4 text-text-1 text-sm placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-accent/35 focus:border-transparent transition-all"
-          onInput={(e) => setUrl(e.target.value)}
+          value={url()}
+          onInput={(e) => setUrl(e.currentTarget.value)}
         />
         <div class="relative">
           <select
+            aria-label="Expiry"
             class="appearance-none h-10 bg-surface-2 border border-white/8 rounded-md pl-3 pr-8 text-text-2 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/35 focus:border-transparent transition-all"
-            onChange={(e) => setExpiry(e.target.value)}
+            onChange={(e) => setExpiry(e.currentTarget.value)}
           >
             {EXPIRY_OPTIONS.map((opt) => (
               <option value={opt.value} class="bg-surface-2">
@@ -97,16 +107,18 @@ const InputUrl = () => {
           </div>
         </div>
         <button
-          class="h-10 px-5 bg-accent hover:bg-accent-dim text-white text-sm font-semibold rounded-md cursor-pointer border-none transition-all duration-200 active:scale-[0.97] hover:shadow-[0_0_24px_rgba(123,108,246,0.18)] focus:outline-none focus:ring-2 focus:ring-accent/35"
-          onClick={shorten}
+          type="submit"
+          disabled={pending()}
+          class="h-10 px-5 bg-accent hover:bg-accent-dim text-white text-sm font-semibold rounded-md cursor-pointer border-none transition-all duration-200 active:scale-[0.97] hover:shadow-[0_0_24px_rgba(123,108,246,0.18)] focus:outline-none focus:ring-2 focus:ring-accent/35 disabled:opacity-60 disabled:cursor-wait"
         >
           Shorten
         </button>
-      </div>
+      </form>
       <Show when={short()}>
         <button
+          type="button"
           class="mt-6 font-mono text-teal text-sm hover:text-teal/80 transition-colors cursor-pointer bg-transparent border-none p-0"
-          onClick={shortUrlClickHandler}
+          onClick={() => copy(short())}
         >
           {short()}
         </button>
